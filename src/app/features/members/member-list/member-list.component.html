@@ -1,0 +1,35 @@
+<div class="member-list">
+  <h2>Members</h2>
+
+  <div class="members-grid">
+    @for (member of members$ | async; track trackByFn($index, member)) {
+      <div class="member-card">
+        <h3>{{ member.fullName }}</h3>
+        <p><strong>Email:</strong> {{ member.email }}</p>
+        @if (member.phoneNumber) {
+          <p><strong>Phone:</strong> {{ member.phoneNumber }}</p>
+        }
+        <div class="borrowed-books">
+          <h4>Borrowed Books</h4>
+          @if (member.borrowedBooks.length > 0) {
+            <ul>
+              @for (bookId of member.borrowedBooks; track bookId) {
+                <li>{{ bookId }}</li>
+              }
+            </ul>
+          } @else {
+            <p>No books borrowed</p>
+          }
+        </div>
+        <div class="actions">
+          <button (click)="updateMember(member.id, { fullName: 'New Name' })">Edit</button>
+          <button (click)="deleteMember(member.id)">Delete</button>
+          <button (click)="addBorrowedBook(member.id, 'book-id')">Add Book</button>
+          <button (click)="removeBorrowedBook(member.id, 'book-id')">Remove Book</button>
+        </div>
+      </div>
+    } @empty {
+      <p>No members found</p>
+    }
+  </div>
+</div> 

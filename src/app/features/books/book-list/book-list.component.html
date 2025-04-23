@@ -1,0 +1,38 @@
+<div class="book-list">
+  <h2>Books</h2>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search books..." (input)="searchBooks($any($event.target).value)">
+  </div>
+
+  <div class="books-grid">
+    @for (book of books$ | async; track trackByFn($index, book)) {
+      <div class="book-card">
+        <h3>{{ book.title }}</h3>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Genre:</strong> {{ book.genre }}</p>
+        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>Available Copies:</strong> {{ book.availableCopies }}</p>
+        @if (book.description) {
+          <p class="description">{{ book.description }}</p>
+        }
+        <div class="actions">
+          <button (click)="openEditForm(book)">Edit</button>
+          <button (click)="deleteBook(book.id)">Delete</button>
+          <button (click)="openAddForm()">+ Add Book</button>
+          <button (click)="borrowBook(book.id, 'member-id')">Borrow</button>
+          <button (click)="returnBook(book.id, 'member-id')">Return</button>
+        </div>
+      </div>
+    } @empty {
+      <p>No books found</p>
+    }
+  </div>
+</div>
+
+<app-book-form
+  *ngIf="isFormOpen"
+  [book]="selectedBook ?? undefined"
+  (save)="onSaveBook($event)"
+  (cancel)="closeForm()"
+/>

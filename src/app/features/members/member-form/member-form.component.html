@@ -1,0 +1,35 @@
+<form [formGroup]="memberForm" (ngSubmit)="onSubmit()" class="member-form">
+  <div class="form-group">
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" formControlName="fullName" class="form-control">
+    @if (memberForm.get('fullName')?.invalid && memberForm.get('fullName')?.touched) {
+      <div class="error-message">Full name is required</div>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email" class="form-control">
+    @if (memberForm.get('email')?.invalid && memberForm.get('email')?.touched) {
+      <div class="error-message">
+        @if (memberForm.get('email')?.errors?.['required']) {
+          Email is required
+        } @else if (memberForm.get('email')?.errors?.['email']) {
+          Please enter a valid email address
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number</label>
+    <input type="tel" id="phoneNumber" formControlName="phoneNumber" class="form-control">
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="memberForm.invalid" class="btn btn-primary">
+      {{ member ? 'Update' : 'Register' }} Member
+    </button>
+    <button type="button" (click)="onCancel()" class="btn btn-secondary">Cancel</button>
+  </div>
+</form> 

@@ -1,0 +1,42 @@
+<div class="modal-backdrop">
+  <div class="modal-window">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="modal-form">
+      <h2 class="modal-title">{{ book ? 'Edit Book' : 'Add Book' }}</h2>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" formControlName="title" />
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input id="author" formControlName="author" />
+      </div>
+
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input id="genre" formControlName="genre" />
+      </div>
+
+      <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <input id="isbn" formControlName="isbn" [readonly]="book" />
+      </div>
+
+      <div class="form-group">
+        <label for="availableCopies">Available Copies</label>
+        <input id="availableCopies" type="number" formControlName="availableCopies" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn cancel" (click)="close()">Cancel</button>
+        <button type="submit" class="btn save" [disabled]="form.invalid">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

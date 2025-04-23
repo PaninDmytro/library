@@ -1,0 +1,22 @@
+<div class="borrowing-list">
+  <h2>Borrowings</h2>
+
+  <div class="borrowings-grid">
+    @for (borrowing of borrowings$ | async; track trackByFn($index, borrowing)) {
+      <div class="borrowing-card">
+        <h3>{{ borrowing.book.title }}</h3>
+        <p><strong>Borrowed by:</strong> {{ borrowing.member.fullName }}</p>
+        <p><strong>Borrow date:</strong> {{ borrowing.borrowDate | date }}</p>
+        <p><strong>Due date:</strong> {{ borrowing.dueDate | date }}</p>
+        <p><strong>Status:</strong> {{ borrowing.returned ? 'Returned' : 'Borrowed' }}</p>
+        <div class="actions">
+          @if (!borrowing.returned) {
+            <button (click)="returnBook(borrowing.book.id, borrowing.member.id)">Return</button>
+          }
+        </div>
+      </div>
+    } @empty {
+      <p>No borrowings found</p>
+    }
+  </div>
+</div> 
