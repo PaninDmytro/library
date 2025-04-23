@@ -2,26 +2,42 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
 
-## Development server
+# 📚 Library App
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This is a library management application built with **Angular 17**.  
+It allows you to manage books, members, and borrow/return operations through a responsive UI.
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Getting Started
 
-## Build
+### ✅ Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Make sure you have the following installed:
 
-## Running unit tests
+- **Node.js** (v18.x recommended)
+- **npm** (v9+)
+- **Angular CLI** (v17+)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Install Angular CLI globally if not installed:
 
-## Running end-to-end tests
+```bash
+npm install -g @angular/cli
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+#After cloning the repo, run:
 
-## Further help
+npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#Run Development Server
+
+npm start
+
+# Project Structure
+src/
+ ├── app/
+ │    ├── core/              # Services and core utilities
+ │    ├── features/          # Feature modules (books, members, etc.)
+ │    ├── shared/            # Shared models, components, and pipes
+ │    └── app.component.ts   # Root component
+ └── index.html
+
